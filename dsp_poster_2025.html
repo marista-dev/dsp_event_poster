@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DS&P 단기강좌 포스터</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --navy: #1E3A8A;
+            --cyan: #0EA5E9;
+            --mint: #14B8A6;
+            --light-gray: #F8FAFC;
+            --gray: #6B7280;
+            --white: #FFFFFF;
+            --deep-navy: #0A1628;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--white);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .poster {
+            width: 100%;
+            max-width: 840px;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* 메인 헤더 - 배경 이미지 적용 */
+        .main-header {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background-image: url('header_image.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        /* 배경 오버레이 - 더 약하게 조정 */
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(10, 22, 40, 0) 0%,
+                rgba(30, 58, 138, 0.8) 50%,
+                rgba(10, 22, 40, 0.4) 100%
+            );
+            z-index: 1;
+        }
+        
+        /* 헤더 로고 */
+        .header-logo {
+            position: absolute;
+            top: 1px;
+            right: 1px;
+            z-index: 3;
+            width: 120px;
+            height: auto;
+        }
+
+        .header-logo img {
+            width: 100%;
+            height: auto;
+            filter: none;
+            opacity: 1;
+        }
+
+        /* 헤더 컨텐츠 래퍼 */
+        .header-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 790px;
+            padding: 50px 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        /* 상단 타이틀 섹션 */
+        .poster-title-section {
+            text-align: center;
+            animation: fadeInDown 1s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .year {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-shadow:
+                0 4px 20px rgba(0,0,0,0.8),
+                0 0 30px rgba(14, 165, 233, 0.6);
+        }
+        
+        .poster-theme-main {
+            font-size: 42px;
+            font-weight: 700;
+            color: #67E8F9;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            letter-spacing: -0.5px;
+            margin-top: 10px;
+        }
+        
+        .event-type {
+            font-size: 35px;
+            font-weight: 700;
+            color: var(--white);
+            text-shadow:
+                0 4px 20px rgba(0,0,0,0.8),
+                0 0 40px rgba(14, 165, 233, 0.4);
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+        
+        /* 정보 컨테이너 - 세로 컬럼 스타일 */
+        .poster-info-container {
+            display: flex;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.3s both;
+            margin-top: 25px;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .poster-info-grid {
+            display: flex;
+            gap: 0;
+            width: 100%;
+            max-width: 700px;
+        }
+        
+        /* 각 정보 컬럼 */
+        .poster-info-column {
+            flex: 1;
+            text-align: center;
+            padding: 20px 15px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* 컬럼 구분선 */
+        .poster-info-column:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            bottom: 20%;
+            width: 1px;
+            background: linear-gradient(
+                180deg,
+                transparent,
+                rgba(255,255,255,0.3) 20%,
+                rgba(255,255,255,0.3) 80%,
+                transparent
+            );
+        }
+        
+        /* 라벨 배지 스타일 */
+        .poster-info-label {
+            display: inline-block;
+            background: var(--cyan);
+            color: var(--white);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+        }
+        /* 정보 값 */
+        .poster-info-value {
+            color: var(--white);
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.5;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        }
+        
+        /* 장소 정보의 줄바꿈 처리 */
+        .poster-info-value .sub-info {
+            display: block;
+            margin-top: 5px;
+            font-size: 20px;
+            opacity: 0.9;
+        }
+        
+        /* 컨텐츠 섹션 */
+        .content {
+            position: relative;
+            background: var(--white);
+        }
+        
+        /* 섹션 타이틀 */
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .section-title::before,
+        .section-title::after {
+            content: '';
+            height: 2px;
+            width: 50px;
+            background: linear-gradient(90deg, transparent, var(--cyan));
+        }
+        
+        .section-title::after {
+            background: linear-gradient(90deg, var(--cyan), transparent);
+        }
+        
+        .section-title-text {
+            color: var(--navy);
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        /* 인사말 섹션 */
+        .greeting-section {
+            margin: 35px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(30,58,138,0.05) 0%, rgba(14,165,233,0.05) 100%);
+            border-radius: 16px;
+            border-left: 4px solid var(--cyan);
+        }
+        
+        .greeting-title {
+            color: var(--navy);
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+        
+        .greeting-content {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+        
+        .greeting-author {
+            color: var(--navy);
+            font-size: 13px;
+            font-weight: 600;
+            text-align: right;
+        }
+        
+        /* 위원회 섹션 */
+        .committee-section {
+            margin: 0 35px 35px;
+        }
+        
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+        
+        .committee-item {
+            background: var(--white);
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .committee-item:hover {
+            border-color: var(--cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(14,165,233,0.1);
+        }
+        
+        .committee-role {
+            color: var(--cyan);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .committee-name {
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        /* 프로그램 섹션 */
+        .program-section {
+            margin: 0 35px 35px;
+        }
+        
+        /* 프로그램 테이블 스타일 */
+        .program-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .program-table thead {
+            background: var(--navy);
+        }
+        
+        .program-table thead th {
+            color: var(--white);
+            padding: 18px;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 0.5px;
+            border-right: 1px solid var(--white);
+        }
+        
+        .program-table thead th:last-child {
+            border-right: none;
+        }
+        
+        .program-table tbody tr {
+            border-bottom: 1px solid rgba(107, 114, 128, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .program-table tbody tr:last-child {
+            border-bottom: none;
+        }
+        
+        /* Hover 효과 - 휴식/중식 제외 */
+        .program-table tbody tr:not(.break-row):hover {
+            background: linear-gradient(135deg, rgba(14,165,233,0.05) 0%, rgba(20,184,166,0.05) 100%);
+            transform: scale(1.01);
+            box-shadow: 0 4px 15px rgba(14,165,233,0.1);
+        }
+        
+        .program-table tbody tr:not(.break-row):hover .program-title {
+            color: var(--cyan);
+        }
+        
+        .program-table tbody td {
+            padding: 18px;
+            vertical-align: top;
+        }
+        
+        /* 휴식/중식 행 스타일 */
+        .break-row td {
+            padding: 8px !important;
+            background: var(--light-gray) !important;
+            font-size: 11px;
+            border: none !important;
+        }
+        
+        .program-time {
+            color: var(--cyan);
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            white-space: nowrap;
+            width: 110px;
+        }
+
+        /* break-row 안의 program-time 스타일 오버라이드 */
+        .break-row .program-time {
+            background: var(--light-gray) !important;
+            border: none !important;
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        
+        .program-content {
+            padding-left: 18px;
+        }
+        
+        .program-title {
+            color: var(--navy);
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 7px;
+            transition: color 0.3s ease;
+        }
+        
+        .program-speaker {
+            color: var(--gray);
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .program-email {
+            color: var(--gray);
+            font-size: 12px;
+        }
+        
+        .program-chair {
+            color: var(--gray);
+            font-size: 13px;
+            font-weight: 500;
+            text-align: right;
+            padding-top: 5px;
+            width: 200px;
+            max-width: 200px;
+        }
+        
+        .program-break {
+            text-align: center;
+            color: var(--gray);
+            font-size: 13px;
+            font-weight: 600;
+            background: var(--light-gray) !important;
+        }
+        
+        /* 등록 섹션 */
+        .registration-section {
+            margin: 0 35px 35px;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--light-gray) 0%, rgba(14,165,233,0.05) 100%);
+            border-radius: 16px;
+        }
+        
+        .registration-table {
+            width: 100%;
+            margin-top: 18px;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* 테이블 헤더 스타일링 */
+        .registration-table thead tr:first-child th {
+            background: var(--navy);
+            color: var(--white);
+            padding: 14px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1px;
+            border: 1px solid var(--white);
+        }
+        
+        /* 두 번째 헤더 행 - 더 밝은 배경 */
+        .registration-table thead tr:nth-child(2) th {
+            background: var(--navy);
+            color: var(--white);
+            padding: 11px;
+            font-weight: 600;
+            font-size: 12px;
+            border: 1px solid var(--white);
+            border-top: 2px solid var(--white);
+        }
+        
+        /* 첫 번째 열 (구분) 스타일 */
+        .registration-table th[rowspan] {
+            vertical-align: middle;
+            background: linear-gradient(180deg, var(--navy) 0%, #2563EB 100%);
+            position: relative;
+        }
+        
+        /* 오프라인/온라인 구분을 위한 시각적 구분선 */
+        .registration-table thead tr:first-child th:nth-child(2) {
+            border-left: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .registration-table thead tr:first-child th:nth-child(3) {
+            border-left: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .registration-table td {
+            background: var(--white);
+            color: var(--gray);
+            padding: 14px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 13px;
+            border: 1px solid var(--light-gray);
+        }
+        
+        .registration-table td:first-child {
+            background: rgba(14,165,233,0.05);
+            color: var(--navy);
+            font-weight: 700;
+            border-right: 2px solid var(--light-gray);
+        }
+        
+        /* 오프라인/온라인 섹션 구분 */
+        .registration-table tbody td:nth-child(3) {
+            border-left: 2px solid var(--light-gray);
+            border-right: 2px solid var(--light-gray);
+        }
+        
+        .registration-table tbody td:nth-child(4) {
+            background: var(--white);
+        }
+        
+        /* 등록 정보 섹션 */
+        .registration-info {
+            margin-top: 30px;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(14,165,233,0.1);
+        }
+        
+        .info-item {
+            margin-bottom: 20px;
+        }
+        
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-title {
+            color: var(--navy);
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .info-title::before {
+            content: '▶';
+            color: var(--cyan);
+            font-size: 10px;
+        }
+        
+        .info-content {
+            color: var(--gray);
+            font-size: 13px;
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+        
+        .info-content a {
+            color: var(--cyan);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .info-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        /* 푸터 */
+        .footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .footer-logo-img {
+            height: 130px;
+            width: auto;
+            opacity: 1;
+        }
+        
+        .footer-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+        
+        .footer-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+        
+        .website {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            opacity: 0.85;
+        }
+        
+        .website:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .poster {
+                max-width: 100%;
+            }
+            
+            .main-header {
+                height: auto;
+                min-height: 500px;
+            }
+            
+            .header-content {
+                padding: 35px 18px;
+            }
+            
+            .poster-info-grid {
+                flex-direction: column;
+                max-width: 350px;
+            }
+            
+            .poster-info-column {
+                padding: 18px;
+            }
+            
+            .poster-info-column:not(:last-child)::after {
+                display: none;
+            }
+            
+            .poster-info-column:not(:last-child) {
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+            
+            .event-type {
+                font-size: 22px;
+            }
+            
+            .year {
+                font-size: 28px;
+            }
+            
+            .poster-theme-main {
+                font-size: 28px;
+            }
+            
+            .committee-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .program-table {
+                font-size: 11px;
+            }
+            
+            .program-time {
+                font-size: 11px;
+                width: 75px;
+            }
+            
+            .program-title {
+                font-size: 13px;
+            }
+            
+            .program-speaker,
+            .program-email {
+                font-size: 11px;
+            }
+            
+            .program-chair {
+                font-size: 11px;
+                width: 140px;
+            }
+            
+            .registration-info {
+                padding: 20px;
+            }
+            
+            .footer {
+                padding: 15px 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-logo-img {
+                height: 40px;
+            }
+            
+            .footer-text {
+                align-items: center;
+                text-align: center;
+            }
+            
+            .footer-title {
+                font-size: 12px;
+            }
+            
+            .website {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <!-- Main Header with Background Image -->
+        <div class="main-header">
+            <div class="header-overlay"></div>
+            <!-- 로고 -->
+            <div class="header-logo">
+                <img src="logo.png" alt="DS&P Logo">
+            </div>
+            <div class="header-content">
+                <div class="poster-title-section">
+                    <div class="year">2025년</div>
+                    <div class="event-type">데이터 보안 및 프라이버시 연구회 단기강좌</div>
+                    <div class="poster-theme-main">"나의 개인정보를 남에게 알리지 말라"</div>
+                </div>
+                
+                <div class="poster-info-container">
+                    <div class="poster-info-grid">
+                        <div class="poster-info-column">
+                            <div class="poster-info-label">일 자</div>
+                            <div class="poster-info-value">
+                                2025년 10월 24일(금)
+                                <span class="sub-info">10:00 ~ 17:20</span>
+                            </div>
+                        </div>
+                        <div class="poster-info-column">
+                            <div class="poster-info-label">장 소</div>
+                            <div class="poster-info-value">
+                                세종대학교<br>광개토관 컨벤션홀<br>(온/오프라인 병행)</span>
+                            </div>
+                        </div>
+                        <div class="poster-info-column">
+                            <div class="poster-info-label">주 관</div>
+                            <div class="poster-info-value"> 한국정보처리학회
+                                <span class="sub-info">데이터 보안 및<br>프라이버시 연구회</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Greeting -->
+            <div class="greeting-section">
+                <div class="greeting-title">초대의 글</div>
+                <div class="greeting-content">
+                    안녕하십니까?<br><br>
+                </div>
+                <div class="greeting-author">
+                    2025년 9월<br>
+                    데이터 보안 및 프라이버시 연구회 위원장<br>
+                    임을규
+                </div>
+            </div>
+            
+            <!-- Committee -->
+            <div class="committee-section">
+                <div class="section-title">
+                    <div class="section-title-text">준비 위원</div>
+                </div>
+                <div class="committee-grid">
+                    <div class="committee-item">
+                        <div class="committee-role">프로그램위원장</div>
+                        <div class="committee-name">조성제 교수 (단국대학교)</div>
+                    </div>
+                    <div class="committee-item">
+                        <div class="committee-role">프로그램위원장</div>
+                        <div class="committee-name">박기웅 교수 (세종대학교)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Program -->
+            <div class="program-section">
+                <div class="section-title">
+                    <div class="section-title-text">프로그램</div>
+                </div>
+                
+                <table class="program-table">
+                    <thead>
+                        <tr>
+                            <th>시간</th>
+                            <th colspan="2">발표 주제</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 개회사 -->
+                        <tr>
+                            <td class="program-time">10:00 - 10:10</td>
+                            <td class="program-content">
+                                <div class="program-title">인사말</div>
+                            </td>
+                            <td class="program-chair">사회 :</td>
+                        </tr>
+                        
+                        <!-- 오전 세션 1 -->
+                        <tr>
+                            <td class="program-time">10:10 - 11:10</td>
+                            <td class="program-content">
+                                <div class="program-title">동형암호 가속: CKKS scheme을 중심으로</div>
+                                <div class="program-speaker">안정호 교수 (서울대학교)</div>
+                            </td>
+                            <td class="program-chair">좌장 :</td>
+                        </tr>
+                        
+                        <!-- 휴식 -->
+                        <tr class="break-row">
+                            <td class="program-time">11:10 - 11:20</td>
+                            <td class="program-break" colspan="2">휴 식</td>
+                        </tr>
+                        
+                        <!-- 오전 세션 2 -->
+                        <tr>
+                            <td class="program-time">11:20 - 12:20</td>
+                            <td class="program-content">
+                                <div class="program-title">개인 프라이버시 및 데이터처리 관련 SKT 유출사고의 시사점</div>
+                                <div class="program-speaker">윤지노 책임연구원(KISA)</div>
+                            </td>
+                            <td class="program-chair">좌장 : 박기웅 교수(세종대)</td>
+                        </tr>
+                        
+                        <!-- 중식 -->
+                        <tr class="break-row">
+                            <td class="program-time">12:20 - 14:00</td>
+                            <td class="program-break" colspan="2">중 식</td>
+                        </tr>
+                        
+                        <!-- 오후 세션 1 -->
+                        <tr>
+                            <td class="program-time">14:00 - 15:00</td>
+                            <td class="program-content">
+                                <div class="program-title">한국 개인정보 보호의 현황과 미래</div>
+                                <div class="program-speaker">김푸르나 사무관(개인정보보호위원회)</div>
+                            </td>
+                            <td class="program-chair">좌장 : 조성제 교수(단국대)</td>
+                        </tr>
+                        
+                        <!-- 휴식 -->
+                        <tr class="break-row">
+                            <td class="program-time">15:00 - 15:10</td>
+                            <td class="program-break" colspan="2">휴 식</td>
+                        </tr>
+                        
+                        <!-- 오후 세션 2 -->
+                        <tr>
+                            <td class="program-time">15:10 - 16:10</td>
+                            <td class="program-content">
+                                <div class="program-title">인공지능 관련 데이터 보안</div>
+                                <div class="program-speaker">최광호 상무(안랩클라우드메이트 COO/상무)</div>
+                            </td>
+                            <td class="program-chair">좌장 :</td>
+                        </tr>
+                        
+                        <!-- 휴식 -->
+                        <tr class="break-row">
+                            <td class="program-time">16:00 - 16:10</td>
+                            <td class="program-break" colspan="2">휴 식</td>
+                        </tr>
+                        
+                        <!-- 오후 세션 3 -->
+                        <tr>
+                            <td class="program-time">16:10 - 17:10</td>
+                            <td class="program-content">
+                                <div class="program-title">최근 해킹사례들에서 살펴본 개인정보보호이슈</div>
+                                <div class="program-speaker">김휘강 교수(고려대학교)</div>
+                            </td>
+                            <td class="program-chair">좌장 :</td>
+                        </tr>
+                        
+                        <!-- 폐회 -->
+                        <tr class="break-row">
+                            <td class="program-time">17:10 - 17:20</td>
+                            <td class="program-break" colspan="2">폐회</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Registration -->
+            <div class="registration-section">
+                <div class="section-title">
+                    <div class="section-title-text">등록비</div>
+                </div>
+                <table class="registration-table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">구분</th>
+                            <th colspan="2">오프라인 참석</th>
+                            <th>온라인 참석</th>
+                        </tr>
+                        <tr>
+                            <th>사전등록</th>
+                            <th>당일등록</th>
+                            <th>사전등록</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>일 반</td>
+                            <td>200,000원</td>
+                            <td>250,000원</td>
+                            <td>150,000원</td>
+                        </tr>
+                        <tr>
+                            <td>학 생</td>
+                            <td>150,000원</td>
+                            <td>200,000원</td>
+                            <td>100,000원</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- 등록 정보 -->
+                <div class="registration-info">
+                    <div class="info-item">
+                        <div class="info-title">등록방법</div>
+                        <div class="info-content">
+                            한국정보처리학회 홈페이지 접속 (<a href="https://www.kips.or.kr" target="_blank">https://www.kips.or.kr</a>)<br>
+                            (학회 공지/행사) → 본 행사 선택 → 사전등록 바로가기 → 등록 정보 작성 및 결제 진행
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-title">등록관련문의</div>
+                        <div class="info-content">
+                            <div class="contact-info">
+                                <span>한국정보처리학회, 02-2077-1414, 내선 3번</span>
+                                <span>ysyun@kips.or.kr</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-title">참가 증명서 발급</div>
+                        <div class="info-content">
+                            데이터프라이버시 연구회 간사, ypcho@hanyang.ac.kr
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer-content">
+                    <img src="footer_logo.png" alt="DS&P Logo" class="footer-logo-img">
+                    <div class="footer-text">
+                        <div class="footer-title">데이터 보안 및 프라이버시 연구회 (DS&P)</div>
+                        <a href="https://dsnp.kips.or.kr" class="website">https://dsnp.kips.or.kr</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
