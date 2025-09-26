@@ -12,7 +12,7 @@ async function convertHtmlToPng() {
   const page = await browser.newPage();
 
   // HTML 파일 경로
-  const htmlPath = path.join(__dirname, "dsp_poster_2025.html"); // 실제 파일명으로 변경
+  const htmlPath = path.join(__dirname, "index.html"); 
 
   if (!fs.existsSync(htmlPath)) {
     console.error(`HTML 파일을 찾을 수 없습니다: ${htmlPath}`);
@@ -66,7 +66,7 @@ async function convertHtmlToPng() {
 
   // 포스터 스크린샷
   await poster.screenshot({
-    path: "poster_output.png",
+    path: "poster_output_v1.png",
     type: "png",
   });
 
