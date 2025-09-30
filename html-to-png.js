@@ -66,7 +66,7 @@ async function convertHtmlToPng() {
 
   // 포스터 스크린샷
   await poster.screenshot({
-    path: "poster_output_v2.png",
+    path: "poster_output_v3.png",
     type: "png",
   });
 

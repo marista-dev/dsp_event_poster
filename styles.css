@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap");
 
-/* ===== 기본 설정 ===== */
-* {
+/* ===== 전역 설정 ===== */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,16 +17,11 @@
   --gray: #6b7280;
   --white: #ffffff;
   --deep-navy: #0a1628;
-  --section-margin: 35px;  
+  --section-margin: 35px;
 }
 
 body {
-  font-family:
-    "Noto Sans KR",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--white);
   min-height: 100vh;
   display: flex;
@@ -47,10 +44,7 @@ body {
   position: relative;
   width: 100%;
   height: 500px;
-  background-image: url("header_image.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url("header_image.png") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,33 +53,22 @@ body {
 
 .header-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(10, 22, 40, 0.3) 0%,
-    rgba(30, 58, 138, 0.65) 50%,
-    rgba(10, 22, 40, 0.4) 100%
-  );
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10, 22, 40, 0.3) 0%, rgba(30, 58, 138, 0.65) 20%, rgba(10, 22, 40, 0.4) 60%);
   z-index: 1;
 }
 
 .header-logo {
   position: absolute;
-  top: 1px;
-  right: -10px;
+  top: 0;
+  right: 0;
   z-index: 3;
   width: 120px;
-  height: auto;
 }
 
 .header-logo img {
   width: 100%;
   height: auto;
-  filter: none;
-  opacity: 1;
 }
 
 .header-content {
@@ -96,7 +79,7 @@ body {
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 30px;
 }
 
 /* ===== 타이틀 섹션 ===== */
@@ -110,19 +93,15 @@ body {
   font-weight: 800;
   color: var(--white);
   letter-spacing: 3px;
-  margin-bottom: 20px;
-  text-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.8),
-    0 0 30px rgba(14, 165, 233, 0.6);
+  margin-bottom: 10px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(14, 165, 233, 0.6);
 }
 
 .event-type {
   font-size: 35px;
   font-weight: 700;
   color: var(--white);
-  text-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.8),
-    0 0 40px rgba(14, 165, 233, 0.4);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(14, 165, 233, 0.4);
   letter-spacing: 1px;
   margin-bottom: 25px;
   line-height: 1.2;
@@ -138,136 +117,60 @@ body {
   margin-top: 10px;
 }
 
-/* ===== 정보 컨테이너 - 정렬 수정 ===== */
+/* ===== 정보 리스트 ===== */
 .poster-info-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   animation: fadeInUp 1s ease 0.3s both;
-  margin-top: 20px;
+  padding-left: 30px;
+  margin-top: 50px;
 }
 
-.poster-info-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+.poster-info-list {
+  max-width: 650px;
   width: 100%;
-  max-width: 700px;
 }
 
-.poster-info-column {
-  text-align: center;
-  padding: 15px;
+.info-item {
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;  /* center에서 flex-start로 변경 */
-  min-height: 150px;
+  align-items: baseline;
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
-/* 컬럼 구분선 */
-.poster-info-column:not(:last-child)::after {
+.info-item::before {
   content: "";
   position: absolute;
-  right: 0;
-  top: 25%;
-  bottom: 25%;
-  width: 1px;
-  background: linear-gradient(
-    180deg,
-    transparent,
-    rgba(255, 255, 255, 0.3) 20%,
-    rgba(255, 255, 255, 0.3) 80%,
-    transparent
-  );
+  left: -15px;
+  top: 58%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  background: #67e8f9;
 }
 
-/* 라벨 스타일 - 동일한 높이 */
-.poster-info-label {
+.info-label {
   display: inline-block;
-  background: var(--cyan);
-  color: var(--white);
-  padding: 5px 16px;
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 12px;  /* 동일한 마진 */
-  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
-  height: 32px;  /* 고정 높이 추가 */
-  line-height: 22px;  /* 세로 중앙 정렬 */
-}
-
-/* 정보 값 - 기본 */
-.poster-info-value {
-  color: var(--white);
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.5;  
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-  min-height: 30px;  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-/* 일자, 장소 컬럼 */
-.poster-info-column:first-child .poster-info-value,
-.poster-info-column:nth-child(2) .poster-info-value {
-  font-size: 21px;
-}
-
-/* 시간 정보 */
-.poster-info-column:first-child .sub-info {
-  display: block;
-  margin-top: 10px;
+  min-width: 45px;
   font-size: 22px;
-  opacity: 0.9;
+  font-weight: 600;
+  color: var(--white);
 }
 
-/* 장소 텍스트 줄바꿈 조정 */
-.poster-info-column:nth-child(2) .poster-info-value {
-  white-space: nowrap;  /* 줄바꿈 방지 옵션 */
+.info-divider {
+  color: rgba(103, 232, 249, 0.5);
+  margin: 0 10px;
 }
 
-/* 온/오프라인 정보 */
-.poster-info-column:nth-child(2) .sub-info {
-  display: block;
-  margin-top: 10px;
-  font-size: 18px;
-  opacity: 0.9;
+.info-value {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--white);
+  opacity: 0.95;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* 주최/주관 컬럼 특별 처리 */
-.poster-info-column.organizer {
-  padding-top: 15px;  /* 다른 컬럼과 동일하게 */
-}
-
-/* 주최/주관 그룹 */
-.organizer-group {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.organizer-group:last-child {
-  margin-bottom: 0;
-}
-
-/* 주최/주관 라벨 - 다른 라벨과 높이 맞추기 */
-.organizer-group .poster-info-label {
-  margin-bottom: 8px;
-}
-
-/* 주최/주관 값 */
-.poster-info-column.organizer .poster-info-value {
-  font-size: 16px;
-  line-height: 1.4;
-  min-height: auto;
-}
 /* ===== 애니메이션 ===== */
 @keyframes fadeInDown {
   from {
@@ -291,14 +194,13 @@ body {
   }
 }
 
-/* ===== 컨텐츠 섹션 ===== */
+/* ===== 컨텐츠 공통 ===== */
 .content {
   position: relative;
   background: var(--white);
   padding: 0;
 }
 
-/* 섹션 타이틀 공통 */
 .section-title {
   display: flex;
   align-items: center;
@@ -311,8 +213,8 @@ body {
 .section-title::before,
 .section-title::after {
   content: "";
-  height: 2px;
   width: 50px;
+  height: 2px;
   background: linear-gradient(90deg, transparent, var(--cyan));
 }
 
@@ -321,9 +223,9 @@ body {
 }
 
 .section-title-text {
-  color: var(--navy);
   font-size: 22px;
   font-weight: 800;
+  color: var(--navy);
   letter-spacing: -0.5px;
 }
 
@@ -331,80 +233,72 @@ body {
 .greeting-section {
   margin: 30px var(--section-margin) var(--section-margin);
   padding: 30px;
-  background: linear-gradient(
-    135deg,
-    rgba(30, 58, 138, 0.05) 0%,
-    rgba(14, 165, 233, 0.05) 100%
-  );
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
   border-radius: 16px;
   border-left: 4px solid var(--cyan);
 }
 
 .greeting-title {
-  color: var(--navy);
   font-size: 17px;
   font-weight: 700;
+  color: var(--navy);
   margin-bottom: 18px;
 }
 
 .greeting-content {
-  color: var(--gray);
   font-size: 14px;
+  color: var(--gray);
   line-height: 1.8;
   margin-bottom: 18px;
 }
 
 .greeting-author {
-  color: var(--navy);
   font-size: 13px;
   font-weight: 600;
+  color: var(--navy);
   text-align: right;
 }
 
-/* ===== 위원회 섹션 - 정렬 수정 ===== */
+/* ===== 위원회 섹션 ===== */
 .committee-section {
   margin: 0 var(--section-margin) var(--section-margin);
 }
 
 .committee-table-minimal {
   width: 100%;
-  border-collapse: collapse;
   margin-top: 0;
+  border-collapse: collapse;
 }
 
-/* 모든 th 정렬 */
 .committee-table-minimal th {
-  background: transparent;
-  color: var(--cyan);
+  width: 105px;
+  height: 35px;
   padding: 10px 20px 12px 5px;
   font-size: 12px;
   font-weight: 700;
+  color: var(--cyan);
   text-align: left;
-  width: 105px;
-  border-bottom: 2px solid var(--cyan);
   vertical-align: middle;
-  height: 35px;
+  background: transparent;
+  border-bottom: 2px solid var(--cyan);
 }
 
-/* 모든 td 정렬 */
 .committee-table-minimal td {
   padding: 10px 0;
   color: var(--gray);
-  border-bottom: 1px solid #e5e7eb;
   vertical-align: middle;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .committee-table-minimal tr:last-child td {
   border-bottom: none;
 }
 
-/* 이름 강조 */
 .name-highlight {
-  color: var(--navy);
   font-weight: 600;
+  color: var(--navy);
 }
 
-/* 3열 테이블*/
 .operating-table {
   width: 100%;
   table-layout: fixed;
@@ -417,13 +311,13 @@ body {
 
 .operating-table td {
   width: 33.33%;
-  border: none;
   padding: 3px 15px;
   font-size: 12px;
   color: var(--gray);
-  vertical-align: middle;
   text-align: left;
+  vertical-align: middle;
   line-height: 1.4;
+  border: none;
 }
 
 /* ===== 프로그램 섹션 ===== */
@@ -445,10 +339,10 @@ body {
 }
 
 .program-table thead th {
-  color: var(--white);
   padding: 18px;
   font-size: 15px;
   font-weight: 700;
+  color: var(--white);
   text-align: center;
   letter-spacing: 0.5px;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
@@ -456,7 +350,6 @@ body {
 
 .program-table thead th:first-child {
   width: 130px;
-  text-align: center;
 }
 
 .program-table thead th:last-child {
@@ -464,97 +357,81 @@ body {
 }
 
 .program-table tbody tr {
-  border-bottom: 1px solid rgba(107, 114, 128, 0.15);
-  transition: all 0.3s ease;
-}
-
-.program-table tbody tr:last-child {
-  border-bottom: none;
-}
-
-.program-table tbody tr:not(.break-row):hover {
-  background: linear-gradient(
-    135deg,
-    rgba(14, 165, 233, 0.05) 0%,
-    rgba(20, 184, 166, 0.05) 100%
-  );
-  transform: scale(1.005);
-  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.1);
+  height: auto;
+  min-height: 60px;
 }
 
 .program-table tbody td {
+  position: relative;
   padding: 16px;
-  vertical-align: middle;
 }
 
-/* 시간 열 */
+.program-table tbody td:first-child {
+  vertical-align: middle !important;
+}
+
 .program-time {
-  color: var(--cyan);
+  width: 130px;
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
   font-size: 13px;
   font-weight: 700;
+  color: var(--cyan);
   text-align: center;
   white-space: nowrap;
-  width: 130px;
+  vertical-align: middle !important;
 }
 
-/* 내용 열 */
 .program-content {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 16px 20px;
+  vertical-align: top !important;
 }
 
 .program-title {
-  color: var(--navy);
+  margin: 0 0 6px 0;
   font-size: 15px;
   font-weight: 700;
-  margin-bottom: 6px;
+  color: var(--navy);
   transition: color 0.3s ease;
 }
 
-.program-table tbody tr:not(.break-row):hover .program-title {
-  color: var(--cyan);
-}
-
 .program-speaker {
-  color: var(--gray);
   font-size: 13px;
   font-weight: 500;
+  color: var(--gray);
 }
 
-/* 좌장 열 */
 .program-chair {
-  color: var(--gray);
+  width: 200px;
+  padding: 16px 20px 16px 0 !important;
   font-size: 13px;
   font-weight: 500;
-  text-align: left;
-  padding-left: 20px;
-  width: 180px;
+  color: var(--gray);
+  text-align: right;
+  vertical-align: top !important;
 }
 
-/* 휴식/중식 행 */
 .break-row td {
   padding: 10px !important;
-  background: var(--light-gray) !important;
-  text-align: center;
   font-size: 13px;
   font-weight: 600;
   color: var(--gray);
+  text-align: center;
+  vertical-align: middle;
+  background: var(--light-gray) !important;
 }
 
 .break-row .program-time {
-  background: var(--light-gray) !important;
   color: var(--gray);
+  vertical-align: middle;
+  background: var(--light-gray) !important;
 }
 
-/* ===== 등록 섹션 - 테이블 너비 원복 ===== */
+/* ===== 등록 섹션 ===== */
 .registration-section {
-  margin: 0 35px 35px;
+  margin: 0 var(--section-margin) var(--section-margin);
   padding: 30px;
-  background: linear-gradient(
-    135deg,
-    var(--light-gray) 0%,
-    rgba(14, 165, 233, 0.05) 100%
-  );
+  background: linear-gradient(135deg, var(--light-gray) 0%, rgba(14, 165, 233, 0.05) 100%);
   border-radius: 16px;
 }
 
@@ -562,30 +439,26 @@ body {
   width: 100%;
   margin-top: 18px;
   border-collapse: collapse;
-  overflow: hidden;
   border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  /* table-layout: fixed; 제거 - 자동 너비 계산 */
 }
 
-/* 헤더 공통 스타일 */
 .registration-table thead th {
-  background: var(--navy);
-  color: var(--white);
+  padding: 14px;
   font-weight: 700;
-  letter-spacing: 1px;
-  border: 1px solid var(--white);
+  color: var(--white);
   text-align: center;
   vertical-align: middle;
+  letter-spacing: 1px;
+  background: var(--navy);
+  border: 1px solid var(--white);
 }
 
-/* 첫 번째 행 헤더 */
 .registration-table thead tr:first-child th {
-  padding: 14px;
   font-size: 13px;
 }
 
-/* 두 번째 행 헤더 */
 .registration-table thead tr:nth-child(2) th {
   padding: 11px;
   font-size: 12px;
@@ -593,101 +466,86 @@ body {
   border-top: 2px solid var(--white);
 }
 
-/* rowspan이 있는 헤더 (구분 셀) */
 .registration-table th[rowspan] {
-  vertical-align: middle;
-  background: var(--navy) ;
   position: relative;
+  vertical-align: middle;
+  background: var(--navy);
 }
 
-/* 오프라인/온라인 구분선 */
 .registration-table thead tr:first-child th:nth-child(2),
 .registration-table thead tr:first-child th:nth-child(3) {
   border-left: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-/* 바디 스타일 */
 .registration-table td {
-  background: var(--white);
-  color: var(--gray);
   padding: 14px;
-  text-align: center;
-  font-weight: 600;
   font-size: 13px;
+  font-weight: 600;
+  color: var(--gray);
+  text-align: center;
+  background: var(--white);
   border: 1px solid var(--light-gray);
 }
 
-/* 첫 번째 열 (구분) */
 .registration-table td:first-child {
-  background: rgba(14, 165, 233, 0.05);
-  color: var(--navy);
   font-weight: 700;
+  color: var(--navy);
+  background: rgba(14, 165, 233, 0.05);
   border-right: 2px solid var(--light-gray);
 }
 
-/* 당일등록과 온라인 사전등록 구분선 */
 .registration-table tbody td:nth-child(3) {
   border-left: 2px solid var(--light-gray);
   border-right: 2px solid var(--light-gray);
 }
 
-.registration-table tbody td:nth-child(4) {
-  background: var(--white);
-}
-/* ===== 등록 정보 섹션 ===== */
 .registration-info {
   margin-top: 30px;
-  background: var(--white);
-  border-radius: 12px;
   padding: 25px;
+  background: var(--white);
   border: 1px solid rgba(14, 165, 233, 0.1);
+  border-radius: 12px;
 }
 
-.info-item {
+.reg-info-item {
   margin-bottom: 20px;
 }
 
-.info-item:last-child {
+.reg-info-item:last-child {
   margin-bottom: 0;
 }
 
-.info-title {
-  color: var(--navy);
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 8px;
+.reg-info-title {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
 }
 
-.info-title::before {
+.reg-info-title::before {
   content: "▶";
-  color: var(--cyan);
   font-size: 10px;
+  color: var(--cyan);
 }
 
-.info-content {
-  color: var(--gray);
-  font-size: 13px;
-  line-height: 1.6;
+.reg-info-content {
   padding-left: 20px;
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.6;
 }
 
-.info-content a {
+.reg-info-content a {
+  font-weight: 600;
   color: var(--cyan);
   text-decoration: none;
-  font-weight: 600;
 }
 
-.info-content a:hover {
+.reg-info-content a:hover {
   text-decoration: underline;
-}
-
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
 }
 
 /* ===== 오시는 길 섹션 ===== */
@@ -696,38 +554,37 @@ body {
 }
 
 .location-info-box {
-  background: var(--white);
-  border-radius: 12px;
   padding: 20px 25px;
-  border: 1px solid rgba(14, 165, 233, 0.1);
   margin-bottom: 20px;
+  background: var(--white);
+  border: 1px solid rgba(14, 165, 233, 0.1);
+  border-radius: 12px;
 }
 
 .location-line {
-  color: #333;
-  font-size: 14px;
-  line-height: 1.6;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
 }
 
 .location-label {
-  color: var(--navy);
-  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-weight: 700;
+  color: var(--navy);
   flex-shrink: 0;
 }
 
 .location-label::before {
   content: "▶";
-  color: var(--cyan);
   font-size: 10px;
+  color: var(--cyan);
 }
 
-/* 지도 영역 */
 .location-map-container {
   width: 100%;
   background: var(--white);
@@ -738,19 +595,19 @@ body {
 }
 
 .location-map-container img {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
 }
 
 /* ===== 푸터 ===== */
 .footer {
-  background: var(--navy);
-  color: var(--white);
-  padding: 15px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 15px 20px;
+  color: var(--white);
+  background: var(--navy);
 }
 
 .footer-content {
@@ -760,9 +617,8 @@ body {
 }
 
 .footer-logo-img {
-  height: 120px;
   width: auto;
-  opacity: 1;
+  height: 120px;
 }
 
 .footer-text {
@@ -780,12 +636,12 @@ body {
 }
 
 .website {
+  font-size: 12px;
+  font-weight: 500;
   color: var(--white);
   text-decoration: none;
-  font-weight: 500;
-  font-size: 12px;
-  transition: all 0.3s ease;
   opacity: 0.85;
+  transition: all 0.3s ease;
 }
 
 .website:hover {
@@ -813,38 +669,51 @@ body {
     gap: 20px;
   }
 
-  .poster-info-grid {
-    grid-template-columns: 1fr;
-    max-width: 350px;
-    margin: 0 auto;
-  }
-
-  .poster-info-column {
-    padding: 15px;
-    min-height: auto;
-  }
-
-  .poster-info-column:not(:last-child)::after {
-    display: none;
-  }
-
-  .poster-info-column:not(:last-child) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .event-type {
-    font-size: 24px;
+  .poster-title-section {
+    padding: 0 10px;
   }
 
   .year {
     font-size: 26px;
   }
 
+  .event-type {
+    font-size: 24px;
+  }
+
   .poster-theme-main {
     font-size: 28px;
   }
 
-  /* 위원회 테이블 반응형 */
+  .poster-info-list {
+    padding: 0 20px;
+  }
+
+  .info-item {
+    font-size: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .info-item::before {
+    display: none;
+  }
+
+  .info-label {
+    font-size: 13px;
+    margin-bottom: 3px;
+  }
+
+  .info-divider {
+    display: none;
+  }
+
+  .info-value {
+    font-size: 15px;
+    padding-left: 10px;
+  }
+
   .committee-table-minimal th {
     font-size: 11px;
     width: 80px;
@@ -857,7 +726,6 @@ body {
     padding: 3px 0;
   }
 
-  /* 프로그램 테이블 반응형 */
   .program-table {
     font-size: 11px;
   }
@@ -895,7 +763,6 @@ body {
     padding-right: 10px;
   }
 
-  /* 등록 테이블 반응형 */
   .registration-section {
     padding: 20px;
   }
@@ -923,7 +790,6 @@ body {
     padding: 20px;
   }
 
-  /* 오시는 길 반응형 */
   .location-info-box {
     padding: 15px;
   }
@@ -935,7 +801,6 @@ body {
     gap: 4px;
   }
 
-  /* 푸터 반응형 */
   .footer {
     padding: 15px;
   }
