@@ -66,12 +66,12 @@ async function convertHtmlToPng() {
 
   // 포스터 스크린샷
   await poster.screenshot({
-    path: "poster_output_v9.png",
-    type: "png",
+    path: "poster_output_v11.jpeg",
+    type: "jpeg",
   });
 
   await browser.close();
-  console.log("✅ PNG 생성 완료: poster_output.png");
+  console.log("✅ 생성 완료");
 }
 
 convertHtmlToPng().catch(console.error);
